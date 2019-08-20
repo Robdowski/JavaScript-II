@@ -58,28 +58,37 @@ const runners = [
 // ==== Challenge 1: Use .forEach() ====
 // The event director needs both the first and last names of each runner for their running bibs. Combine both the first and last names and populate a new array called `fullNames`. This array will contain just strings.
 let fullNames = [];
+const names = runners.forEach(el => fullNames.push(el.first_name + " " + el.last_name))
 console.log(fullNames);
 
 // ==== Challenge 2: Use .map() ====
 // The event director needs to have all the runners' first names in uppercase because the director BECAME DRUNK WITH POWER. Populate an array called `firstNamesAllCaps`. This array will contain just strings.
-let firstNamesAllCaps = [];
+let firstNamesAllCaps = runners.map(el => el.first_name.toUpperCase())
 console.log(firstNamesAllCaps);
 
 // ==== Challenge 3: Use .filter() ====
 // The large shirts won't be available for the event due to an ordering issue. We need a filtered version of the runners array, containing only those runners with large sized shirts so they can choose a different size. This will be an array of objects.
-let runnersLargeSizeShirt = [];
+let runnersLargeSizeShirt = runners.filter(el => el.shirt_size === "L")
 console.log(runnersLargeSizeShirt);
 
 // ==== Challenge 4: Use .reduce() ====
 // The donations need to be tallied up and reported for tax purposes. Add up all the donations and save the total into a ticketPriceTotal variable.
-let ticketPriceTotal = 0;
+let ticketPriceTotal = runners.reduce((total , cv) => total + cv.donation, 0)
 console.log(ticketPriceTotal);
 
 // ==== Challenge 5: Be Creative ====
 // Now that you have used .forEach(), .map(), .filter(), and .reduce().  I want you to think of potential problems you could solve given the data set and the 5k fun run theme.  Try to create and then solve 3 unique problems using one or many of the array methods listed above.
 
 // Problem 1
-
+//Want to find out how many people donated over 100 dollars
+const overOneHundred = runners.filter(el => el.donation > 100)
+console.log(overOneHundred.length)
 // Problem 2
-
+//Want to list every name in the form of "Bond, James Bond"
+let jamesBond = []
+const bond = runners.forEach(el => jamesBond.push(`${el.last_name}, ${el.first_name} ${el.last_name}`))
+console.log(jamesBond)
 // Problem 3
+// Want everyone's first name + last name + company name in new array
+let company = runners.map(el => `${el.first_name} ${el.last_name}: ${el.company_name}`)
+console.log(company)
